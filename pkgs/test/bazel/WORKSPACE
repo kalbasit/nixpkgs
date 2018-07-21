@@ -84,7 +84,7 @@ http_archive(
 go_rules_dependencies()
 
 # The Go version here must match the version in .tool-versions
-go_register_toolchains(go_version = "1.10.3")
+go_register_toolchains(go_version = "host")
 
 load(
     "@bazel_gazelle//:deps.bzl",
@@ -103,11 +103,12 @@ load("@build_bazel_rules_nodejs//:defs.bzl", "node_repositories", "yarn_install"
 # your npm dependencies into your node_modules folder.
 # You must still run the package manager to do this.
 node_repositories(
-    node_version = "8.11.1",
     package_json = [
         "//rules_nodejs:package.json",
     ],
-    yarn_version = "1.6.0",
+
+    node_path = "/nix/store/q05xbja14rsgqzknmmlkajnzacjnp4hl-nodejs-8.11.3",
+    yarn_path = "/nix/store/fc9n30kjp7q04s520w4n34c3rbhsqdnl-yarn-1.8.0/libexec/yarn",
 )
 
 yarn_install(
