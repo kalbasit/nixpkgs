@@ -1,0 +1,9 @@
+load("@build_bazel_rules_typescript//:defs.bzl", "ts_library")
+
+ts_library(
+    name = "hello",
+    srcs = ["hello.ts"],
+    node_modules = "@root_node_modules//:node_modules",
+    tsconfig = "//:tsconfig.json",
+    visibility = ["//visibility:public"],
+)

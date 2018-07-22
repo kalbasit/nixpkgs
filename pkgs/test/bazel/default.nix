@@ -25,5 +25,8 @@ stdenv.mkDerivation rec {
 
     printf "running bazel test //... " >&2
     bazel test //...
+
+    printf "running bazel build //rules_typescript:hello " >&2
+    bazel build //rules_typescript:hello
   '';
 }
