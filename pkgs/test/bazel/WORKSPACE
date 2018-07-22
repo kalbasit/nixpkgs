@@ -55,9 +55,9 @@ http_archive(
 
 http_archive(
     name = "build_bazel_rules_typescript",
-    sha256 = "90aa6e1996a14cedfbe64445d5dcf8bbaeec8292cbb177bc9002e77543bc731f",
-    strip_prefix = "rules_typescript-0.14.0",
-    url = "https://github.com/bazelbuild/rules_typescript/archive/0.14.0.zip",
+    sha256 = "a2b26ac3fc13036011196063db1bf7f1eae81334449201dc28087ebfa3708c99",
+    strip_prefix = "rules_typescript-0.15.3",
+    url = "https://github.com/bazelbuild/rules_typescript/archive/0.15.3.zip",
 )
 
 #
