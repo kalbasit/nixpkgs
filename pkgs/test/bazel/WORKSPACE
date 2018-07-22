@@ -103,12 +103,10 @@ load("@build_bazel_rules_nodejs//:defs.bzl", "node_repositories", "yarn_install"
 # your npm dependencies into your node_modules folder.
 # You must still run the package manager to do this.
 node_repositories(
+    node_path = "/nix/store/q05xbja14rsgqzknmmlkajnzacjnp4hl-nodejs-8.11.3",
     package_json = [
         "//rules_nodejs:package.json",
     ],
-
-    node_path = "/nix/store/q05xbja14rsgqzknmmlkajnzacjnp4hl-nodejs-8.11.3",
-    yarn_path = "/nix/store/fc9n30kjp7q04s520w4n34c3rbhsqdnl-yarn-1.8.0/libexec/yarn",
 )
 
 yarn_install(
