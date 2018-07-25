@@ -4,6 +4,17 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
 #
+# Skylib
+#
+
+http_archive(
+    name = "bazel_skylib",
+    sha256 = "ca4e3b8e4da9266c3a9101c8f4704fe2e20eb5625b2a6a7d2d7d45e3dd4efffd",
+    strip_prefix = "bazel-skylib-0.5.0",
+    url = "https://github.com/bazelbuild/bazel-skylib/archive/0.5.0.zip",
+)
+
+#
 # Golang
 #
 
@@ -30,12 +41,14 @@ http_archive(
 #     url = "https://github.com/bazelbuild/rules_nodejs/archive/0.10.1.zip",
 # )
 
-# TODO: remove this once https://github.com/bazelbuild/rules_nodejs/pull/247 is merged
+# TODO: switch back to the bazelbuild/nodejs once the below PRs are merged
+# - https://github.com/bazelbuild/rules_nodejs/pull/247
+# - https://github.com/bazelbuild/rules_nodejs/pull/249
 http_archive(
     name = "build_bazel_rules_nodejs",
-    sha256 = "8663c72cccc06a992d6b428badcc5fec507f9aba6a7582c14b2037a0ccc81ed7",
-    strip_prefix = "rules_nodejs-6baf41cbb46f93e3d68419d0d947027ff4ff44f7",
-    url = "https://github.com/kalbasit/rules_nodejs/archive/6baf41cbb46f93e3d68419d0d947027ff4ff44f7.zip",
+    sha256 = "9b49e40a6605504205d5b6acf8447ecaae6aefe7bd8c4b9fed236b3db7005733",
+    strip_prefix = "rules_nodejs-0798a13a5ce0e9da2ced57aeb0d01bc1676f8e57",
+    url = "https://github.com/kalbasit/rules_nodejs/archive/0798a13a5ce0e9da2ced57aeb0d01bc1676f8e57.zip",
 )
 
 #
@@ -103,7 +116,6 @@ load("@build_bazel_rules_nodejs//:defs.bzl", "node_repositories", "yarn_install"
 # your npm dependencies into your node_modules folder.
 # You must still run the package manager to do this.
 node_repositories(
-    node_path = "/nix/store/q05xbja14rsgqzknmmlkajnzacjnp4hl-nodejs-8.11.3",
     package_json = [
         "//:package.json",
     ],
