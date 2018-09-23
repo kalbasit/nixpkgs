@@ -3518,6 +3518,8 @@ with pkgs;
 
   kpcli = callPackage ../tools/security/kpcli { };
 
+  kr = callPackage ../tools/security/kr { };
+
   krename = libsForQt5.callPackage ../applications/misc/krename { };
 
   krunner-pass = libsForQt5.callPackage ../tools/security/krunner-pass { };
