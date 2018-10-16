@@ -52,9 +52,14 @@ buildBazelPackage rec {
       # a different sha256 for the fetch phase.
       rm -rf $bazelOut/external/{go_sdk,\@go_sdk.marker}
       sed -e '/^FILE:@go_sdk.*/d' -i $bazelOut/external/\@*.marker
+
+      # Remove compiled binaries as they differ on Linux and Mac, they also do
+      # not affect the build.
+      rm -f $bazelOut/external/bazel_gazelle_go_repository_tools/bin/fetch_repo
+      rm -f $bazelOut/external/bazel_gazelle_go_repository_tools/bin/gazelle
     '';
 
-    sha256 = "1iyjvibvlwg980p7nizr6x5v31dyp4a344f0xn839x393583k59d";
+    sha256 = "12hshbkmmpsx2l6iw4xi09ryyw58yz6q0yn9a59k7ybnfwgva97l";
   };
 
   buildAttrs = {
