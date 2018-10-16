@@ -9,21 +9,16 @@
 
 buildBazelPackage rec {
   name = "bazel-watcher-${version}";
-  version = "0.5.0";
+  version = "0.6.0";
 
   src = fetchFromGitHub {
     owner = "bazelbuild";
     repo = "bazel-watcher";
     rev = "v${version}";
-    sha256 = "1sis723hwax4dg0c28x20yj0hjli66q1ykcvjirgy57znz4iwlq9";
+    sha256 = "04b27lv3hbi475r51ya59b17djdzl6h3cf7934gyvjrdg49jicq6";
   };
 
   patches = [
-    (fetchpatch {
-      url = "https://github.com/bazelbuild/bazel-watcher/commit/4d5928eee3dd5843a1b55136d914b78fef7f25d0.patch";
-      sha256 = "0gxzcdqgifrmvznfy0p5nd11b39n2pwxcvpmhc6hxf85mwlxz7dg";
-    })
-
     ./update-gazelle-fix-ssl.patch
   ];
 
@@ -59,7 +54,7 @@ buildBazelPackage rec {
       rm -f $bazelOut/external/bazel_gazelle_go_repository_tools/bin/gazelle
     '';
 
-    sha256 = "12hshbkmmpsx2l6iw4xi09ryyw58yz6q0yn9a59k7ybnfwgva97l";
+    sha256 = "12j8qxyd1cwzziv2fjjrg961rkqsmwm6kclnnlz6pm9m1s1d24f7";
   };
 
   buildAttrs = {
