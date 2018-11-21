@@ -136,8 +136,6 @@ with pkgs;
 
   dieHook = makeSetupHook {} ../build-support/setup-hooks/die.sh;
 
-  archiver = callPackage ../applications/misc/archiver { };
-
   digitalbitbox = libsForQt5.callPackage ../applications/misc/digitalbitbox { };
 
   dockerTools = callPackage ../build-support/docker { };
@@ -15666,6 +15664,9 @@ with pkgs;
 
 
   ### APPLICATIONS
+
+  # TODO; merge the attrs of applications into the global scope
+  applications = recurseIntoAttrs (callPackage ../applications { inherit pkgs; });
 
   _2bwm = callPackage ../applications/window-managers/2bwm {
     patches = config."2bwm".patches or [];
