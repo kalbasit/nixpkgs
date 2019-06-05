@@ -1,0 +1,22 @@
+diff --git a/cmd-list-keys.c b/cmd-list-keys.c
+index 5efb0cd2..e93142ce 100644
+--- a/cmd-list-keys.c
++++ b/cmd-list-keys.c
+@@ -39,7 +39,7 @@ const struct cmd_entry cmd_list_keys_entry = {
+ 	.args = { "T:", 0, 0 },
+ 	.usage = "[-T key-table]",
+ 
+-	.flags = CMD_STARTSERVER|CMD_AFTERHOOK,
++	.flags = CMD_AFTERHOOK,
+ 	.exec = cmd_list_keys_exec
+ };
+ 
+@@ -50,7 +50,7 @@ const struct cmd_entry cmd_list_commands_entry = {
+ 	.args = { "F:", 0, 0 },
+ 	.usage = "[-F format]",
+ 
+-	.flags = CMD_STARTSERVER|CMD_AFTERHOOK,
++	.flags = CMD_AFTERHOOK,
+ 	.exec = cmd_list_keys_exec
+ };
+ 

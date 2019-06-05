@@ -24,6 +24,10 @@ stdenv.mkDerivation rec {
     sha256 = "1fy87wvxn7r7jzqapvjisc1iizic3kxqk2lv83giqmw1y4g3s7rl";
   };
 
+  patches = [
+    ./fixing-infinite-loop.patch
+  ];
+
   postPatch = ''
     sed -i 's/2.8-rc/2.8/' configure.ac
   '';
