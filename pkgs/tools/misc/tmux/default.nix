@@ -26,6 +26,8 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ pkgconfig autoreconfHook ];
 
+  patches = [ ./fix-infinite-loop.patch ];
+
   buildInputs = [ ncurses libevent makeWrapper ];
 
   configureFlags = [

@@ -1,0 +1,73 @@
+diff --git a/server-client.c b/server-client.c
+index aea090c7..3204044b 100644
+--- a/server-client.c
++++ b/server-client.c
+@@ -1475,7 +1475,9 @@ server_client_click_timer(__unused int fd, __unused short events, void *data)
+ static void
+ server_client_check_exit(struct client *c)
+ {
+-	if (!(c->flags & CLIENT_EXIT))
++	if (~c->flags & CLIENT_EXIT)
++		return;
++	if (c->flags & CLIENT_EXITED)
+ 		return;
+ 
+ 	if (EVBUFFER_LENGTH(c->stdin_data) != 0)
+@@ -1488,7 +1490,7 @@ server_client_check_exit(struct client *c)
+ 	if (c->flags & CLIENT_ATTACHED)
+ 		notify_client("client-detached", c);
+ 	proc_send(c->peer, MSG_EXIT, -1, &c->retval, sizeof c->retval);
+-	c->flags &= ~CLIENT_EXIT;
++	c->flags |= CLIENT_EXITED;
+ }
+ 
+ /* Redraw timer callback. */
+diff --git a/server.c b/server.c
+index 04f907f3..f3d6c7a1 100644
+--- a/server.c
++++ b/server.c
+@@ -43,7 +43,7 @@
+ struct clients		 clients;
+ 
+ struct tmuxproc		*server_proc;
+-static int		 server_fd;
++static int		 server_fd = -1;
+ static int		 server_exit;
+ static struct event	 server_ev_accept;
+ 
+@@ -218,11 +218,10 @@ server_start(struct tmuxproc *client, struct event_base *base, int lockfd,
+ 	if (cause != NULL) {
+ 		cmdq_append(c, cmdq_get_callback(server_start_error, cause));
+ 		c->flags |= CLIENT_EXIT;
+-	}
++	} else
++		start_cfg();
+ 
+-	start_cfg();
+ 	server_add_accept(0);
+-
+ 	proc_loop(server_proc, server_loop);
+ 
+ 	job_kill_all();
+@@ -374,6 +373,9 @@ server_add_accept(int timeout)
+ {
+ 	struct timeval tv = { timeout, 0 };
+ 
++	if (server_fd == -1)
++		return;
++
+ 	if (event_initialized(&server_ev_accept))
+ 		event_del(&server_ev_accept);
+ 
+diff --git a/tmux.h b/tmux.h
+index d7f38199..3a623e37 100644
+--- a/tmux.h
++++ b/tmux.h
+@@ -1442,6 +1442,7 @@ struct client {
+ #define CLIENT_SIZECHANGED 0x400000
+ #define CLIENT_STATUSOFF 0x800000
+ #define CLIENT_REDRAWSTATUSALWAYS 0x1000000
++#define CLIENT_EXITED 0x2000000
+ #define CLIENT_ALLREDRAWFLAGS		\
+ 	(CLIENT_REDRAWWINDOW|		\
+ 	 CLIENT_REDRAWSTATUS|		\
