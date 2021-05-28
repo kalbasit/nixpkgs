@@ -8,6 +8,10 @@ let
     inherit (stdenv.hostPlatform) system;
   };
   self = super // {
+    # alias for onlykey
+    # TODO: automate the computation of this name
+    onlykey = super."onlykey-git://github.com/trustcrypto/OnlyKey-App.git#v5.3.2";
+
     "@angular/cli" = super."@angular/cli".override {
       prePatch = ''
         export NG_CLI_ANALYTICS=false
