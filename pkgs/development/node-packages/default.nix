@@ -9,7 +9,9 @@ let
   };
   self = super // {
     # alias for onlykey
-    # TODO: automate the computation of this name
+    # TODO:
+    # - The build is failing because OnlyKey depends on nw which requires network: https://www.npmjs.com/package/nw
+    # - automate the computation of this name
     onlykey = super."onlykey-git://github.com/trustcrypto/OnlyKey-App.git#v5.3.2";
 
     "@angular/cli" = super."@angular/cli".override {
