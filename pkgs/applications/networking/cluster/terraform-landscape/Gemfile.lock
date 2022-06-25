@@ -4,7 +4,7 @@ GEM
     colorize (0.8.1)
     commander (4.4.6)
       highline (~> 1.7.2)
-    diffy (3.2.1)
+    diffy (3.4.2)
     highline (1.7.10)
     polyglot (0.3.5)
     terraform_landscape (0.2.1)
