@@ -13305,6 +13305,12 @@
     githubId = 12279531;
     name = "Ricardo Guevara";
   };
+  daniyalsuri6 = {
+    email = "daniyal.suri@gmail.com";
+    github = "daniyalsuri6";
+    githubId = 107034852;
+    name = "Daniyal Suri";
+  };
   rhendric = {
     name = "Ryan Hendrickson";
     github = "rhendric";
