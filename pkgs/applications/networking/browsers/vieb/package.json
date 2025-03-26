@@ -39,7 +39,7 @@
   "dependencies": {
     "@cliqz/adblocker-electron": "1.25.2",
     "@cliqz/adblocker-electron-preload": "1.25.2",
-    "@mozilla/readability": "0.4.2",
+    "@mozilla/readability": "0.6.0",
     "darkreader": "4.9.58",
     "highlight.js": "11.7.0",
     "jsdom": "21.0.0",

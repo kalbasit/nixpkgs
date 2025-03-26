@@ -757,10 +757,10 @@
     lodash "^4.17.15"
     tmp-promise "^3.0.2"
 
-"@mozilla/readability@0.4.2":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@mozilla/readability/-/readability-0.4.2.tgz#a425f3dccdbe777d45a4e791bd703ebe633ebb87"
-  integrity sha512-48MJXzi4Dhy2fJ3lGjmwdEJKoMmn3oiYew9n/1OW6cZy78hAzRIyDJDBCGrg4PBFDyY4xos+H4LCFn5QVRDcfw==
+"@mozilla/readability@0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@mozilla/readability/-/readability-0.6.0.tgz#134e3ce3ff1676716e550de0b8de957bcc59208b"
+  integrity sha512-juG5VWh4qAivzTAeMzvY9xs9HY5rAcr2E4I7tiSSCokRFi7XIZCAu92ZkSTsIj1OPceCifL3cpfteP3pDT9/QQ==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
