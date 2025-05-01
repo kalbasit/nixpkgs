@@ -147,6 +147,7 @@ import ../make-test-python.nix (
             package = k3s;
             images = [ pauseImage ];
             serverAddr = "https://${nodes.server2.networking.primaryIPAddress}:6443";
+            limit-nofile = 1024 * 1024 * 2;
             extraFlags = [
               "--pause-image test.local/pause:local"
               "--node-ip ${nodes.agent.networking.primaryIPAddress}"
@@ -168,6 +169,12 @@ import ../make-test-python.nix (
 
         # wait for the agent to show up
         server.wait_until_succeeds("k3s kubectl get node agent")
+
+        # assert LimitNOFILE
+        resp = server.succeed("systemctl cat k3s | grep LimitNOFILE | tail -n 1 | cut -d= -f2")
+        assert resp.strip() == "1048576"
+        resp = agent.succeed("systemctl cat k3s | grep LimitNOFILE | tail -n 1 | cut -d= -f2")
+        assert resp.strip() == "2048576"
 
         for m in machines:
             m.succeed("k3s check-config")

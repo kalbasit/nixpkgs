@@ -574,6 +574,14 @@ in
       '';
     };
 
+    limit-nofile = lib.mkOption {
+      type = lib.types.ints.positive;
+      default = 1048576;
+      description = ''
+        Set the limit of number of file descriptors.
+      '';
+    };
+
     charts = lib.mkOption {
       type = with lib.types; attrsOf (either path package);
       default = { };
@@ -875,7 +883,7 @@ in
           Delegate = "yes";
           Restart = "always";
           RestartSec = "5s";
-          LimitNOFILE = 1048576;
+          LimitNOFILE = cfg.nofile;
           LimitNPROC = "infinity";
           LimitCORE = "infinity";
           TasksMax = "infinity";
