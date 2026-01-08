@@ -500,6 +500,7 @@ in
       wantedBy = [ "multi-user.target" ];
 
       preStart = ''
+        echo ${cfg.package}/bin/dbmate-ncps --url="${cfg.cache.databaseURL}" up
         ${cfg.package}/bin/dbmate-ncps --url="${cfg.cache.databaseURL}" up
       '';
 
